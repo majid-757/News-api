@@ -5,7 +5,7 @@ class News {
 
 
     // send url to api 
-    queryAPI(newsName, country, category) {
+    async queryAPI(newsName, country, category) {
         // build url
         let url = 'https://newsapi.org/v2/'
 
@@ -34,7 +34,12 @@ class News {
         // complete url with key
         url += `apiKey=${this.APIkey}`
 
-        console.log(url)
+        const newsResponse = await fetch(url)
+        const news = await newsResponse.json()
+
+        return {
+            news
+        }
     }
 
 }

@@ -1,5 +1,9 @@
 class UI {
 
+    constructor() {
+        this.result = document.querySelector('#result')
+    }
+
     // show any message in html
     printMassage(message, className) {
         // create div tag
@@ -13,7 +17,7 @@ class UI {
         // remove message after 3second
         setTimeout(() => {
             this.removeMassage()
-        }, 2000);
+        }, 3000);
     }
 
     removeMassage() {
@@ -21,6 +25,30 @@ class UI {
         if (alert) {
             alert.remove()
         }
+    }
+
+
+
+    // showing results into the html
+    showNews(news) {
+        
+        news.forEach(newsInfo => {
+            console.log(newsInfo.title)
+            this.result.innerHTML += `
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title text-center">${newsInfo.title.split('-', 1)}</h2>
+                            <p class="card-text lead textto-info">News Information</p>
+                            <span class="badge badge-primary">source: ${newsInfo.source.name}</span>
+                            <span class="badge badge-primary">Date & Time ${newsInfo.publishedAt}</span>
+                            <br>
+                            <a href="${newsInfo.url}" target="_blank" class="btn btn-primary btn-block">Complete News</a>
+                        </div>
+                    </div>
+                </div>
+            `
+        });
     }
     
 }

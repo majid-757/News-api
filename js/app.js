@@ -25,6 +25,14 @@ function search(e) {
 
     if (newsName !== '' || country !== '' || category !== '') {
         newsAPI.queryAPI(newsName, country, category)
+        .then(news => {
+            const newsArray = news.news.articles
+            if (newsArray.length > 0) {
+                ui.showNews(newsArray)
+            } else {
+                ui.printMassage('There is no news with your filtering', 'text-center alert alert-danger mt-4')
+            }
+        })
     } else {
         ui.printMassage('Please enter one parameter', 'text-center alert alert-danger mt-4')
     }
