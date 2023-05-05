@@ -9,10 +9,33 @@ class News {
         // build url
         let url = 'https://newsapi.org/v2/'
 
+        // check the country and category value
+        if (country === '' && category === '') {
+            url += 'everything?'
+        } else {
+            url += 'top-headlines?'
+        }
 
+        // if newsname exist
+        if (newsName !== '') {
+            url += `q=${newsName}&`
+        }
+        
+        // if country exist
+        if (country !== '') {
+            url += `country=${country}&`
+        }
 
+        // if category exist
+        if (category !== '') {
+            url += `category=${category}&`
+        }
+
+        // complete url with key
+        url += `apiKey=${this.APIkey}`
+
+        console.log(url)
     }
-
 
 }
 
